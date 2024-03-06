@@ -1,0 +1,14 @@
+from pydub import AudioSegment
+from pydub.generators import Sine
+
+# Definir os parâmetros do som da porta
+duração_som = 1000  # em milissegundos
+frequência = 300  # em Hz
+amplitude = 10000  # volume do som
+
+# Gerar o som da porta se abrindo
+som_porta = Sine(frequência).to_audio_segment(duration=duração_som).fade_out(500).fade_in(500)
+som_porta = som_porta - 20  # ajustar o volume
+
+# Exportar o som para um arquivo de áudio
+som_porta.export("som_porta.wav", format="wav")
